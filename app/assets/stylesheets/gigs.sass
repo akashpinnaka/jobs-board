@@ -1,0 +1,162 @@
+$highlight-orange: #ffc063
+$highlight-blue: #2384fc
+
+span.highlight
+  color: $highlight-orange
+  font-weight: 700
+
+
+//----------------Index styles
+
+section#banner
+  #banner-inner
+    h1
+      font-size: 2em
+      color: #777777
+      line-height: 1.2em
+    #search-box
+      margin-top: 2em
+      input
+        width: 50%
+        padding: 0.5em 2em
+        font-size: 1.2em
+        color: #555555
+        border: 1px solid #cccccc
+        border-radius: 5px
+
+
+section#gigs-list-wrapper
+  #gigs-list-wrapper-inner
+    #filters
+      width: 20%
+      h2
+        color: #888888
+        font-weight: 700
+      .form_field
+        margin-top: 1em
+        h3
+          color: #777777
+          font-weight: 700
+          font-size: 1em
+        input[type="text"]
+          width: 95%
+          margin-top: 0.3em
+          color: #555555
+          padding: 1em
+        select
+          width: 95%
+          margin-top: 0.3em
+          color: #555555
+          padding: 1em
+          background-color: #ffffff
+          border: 1px solid #cccccc
+          border-radius: 3px
+          option
+            color: #555555
+      #types
+        margin-top: 1em
+        .checkbox
+          min-width: 50%
+          padding: 0.2em
+          color: #555555
+      #submit-search-button
+        margin-top: 1em
+        input
+          width: 95%
+          background-color: $highlight-blue
+          color: #ffffff
+
+    #gigs-list
+      width: 80%
+      padding: 0 0 0 2em
+      #gigs-list-inner
+        h2
+          color: #888888
+          font-weight: 700
+          margin-bottom: 1em
+        .gig
+          border-bottom: 1px solid #f4f4f4
+          padding: 1em 0
+          .job-title-and-date
+            color: #aaaaaa
+            .title
+              h3
+                a
+                  color: $highlight-blue
+                span.fulltime
+                  font-size: 0.7em
+                  font-weight: 700
+                  color: #fff
+                  background-color: #1ec967
+          .company-and-location
+            margin-top: 1em
+            color: #aaaaaa
+
+
+#pagination-wrapper
+  margin-top: 2em
+
+nav.pagination
+  span
+    display: inline-block
+    a
+      padding: 0.4em
+      border: 1px solid #cccccc
+      color: darken($highlight-orange, 10%)
+  span.first
+  span.prev
+  span.page
+    a
+  span.current
+  span.next
+  span.last
+
+
+
+
+
+//----------------End of index styles
+
+
+//----------------New template styles
+
+section#new-job-form
+  #new-job-form-inner
+    h1
+      color: #555555
+      font-weight: 700
+      font-size: 2em
+    form
+      .fields-wrapper
+        .half-width
+          width: 50%
+          padding: 1em
+          .form_field
+            margin-top: 2em
+            span
+              color: #888888
+              font-style: italic
+              font-size: 0.9em
+            label
+              color: #555555
+            input[type="text"], input[type="number"], textarea
+              font-size: 1em
+              color: #333333
+              width: 100%
+              padding: 1em
+              border: 1px solid #cccccc
+              border-radius: 3px
+              &:focus
+                box-shadow: 0 0 2px $highlight-blue
+            textarea
+              resize: vertical
+              height: 200px
+      input[type="submit"]
+        background-color: $highlight-blue
+        color: #ffffff
+        cursor: pointer
+        &:hover
+          background-color: darken($highlight-blue, 7%)
+
+
+//----------------End of New template styles

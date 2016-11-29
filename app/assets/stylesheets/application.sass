@@ -1,0 +1,124 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+$highlight-orange: #ffc063
+
+*
+  margin: 0
+  padding: 0
+  outline: 0
+  box-sizing: border-box
+  font-family: lato
+
+html, body
+  height: 100%
+
+#body-inner
+  min-height: 100%
+  padding-bottom: 100px
+  position: relative
+
+footer
+  background-color: #999
+  position: absolute
+  left: 0
+  bottom: 0
+  height: 20px
+  width: 100%
+
+.skinny-wrapper
+  width: 90%
+  margin: 0 auto
+
+a
+  text-decoration: none
+
+h1, h2, h3, h4, h5, h6
+  font-weight: 400
+
+.center
+  text-align: center
+
+.fl-left
+  float: left
+
+.fl-right
+  float: right
+
+.cf:before, .cf:after
+  content: ""
+  display: table
+
+.cf:after
+  clear: both
+
+.button
+  padding: 0.5em 1em
+  border-radius: 2px
+  border: 0
+
+.button-small
+  padding: 0.3em 0.6em
+  border-radius: 2px
+  border: 0
+
+.button-large
+  padding: 1em 3em
+  border-radius: 2px
+  border: 0
+
+.button-primary
+  color: #ffffff  
+  background-color: #ffc063
+  &:hover
+    background-color: darken(#ffc063, 5%)
+  
+.button-light
+  color: #444444
+  background-color: #ffffff
+  &:hover
+    background-color: darken(#ffffff, 5%)
+
+.button-custom
+  background-color: lighten(#2384fc, 10%)
+  color: #ffffff
+
+span.small
+  font-size: 0.7em
+  position: relative
+  bottom: 1px
+
+section
+  padding: 3em 0
+
+
+
+header
+  background-color: #2384fc
+  padding: 1em 0
+  #header-inner
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    align-items: center
+    #logo
+      a
+        font-size: 1.5em
+        color: #ffffff
+        font-weight: 700
+    .navigation
+      a
+        margin-left: 0.3em

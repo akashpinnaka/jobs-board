@@ -1,0 +1,20 @@
+<header>
+  <div id="header-inner" class="skinny-wrapper">
+    <div id="logo">
+      <%= link_to 'Lancer', root_path %>
+    </div>
+    <div class="navigation">
+      <a href="#" class="button button-light">Browse all jobs <span class="small"> >> </span></a>
+      <%= link_to 'Post a job <span class="small"> >> </span>'.html_safe, new_gig_path, class: 'button button-primary' %>
+    </div>
+    <div class="navigation">
+      <% if user_signed_in? %>
+        <%= link_to "Edit profile", edit_user_registration_path, class: 'button button-custom' %>
+        <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: 'button button-primary' %>
+      <% else %>
+        <%= link_to "Sign in", new_user_session_path, class: 'button button-light' %>
+        <%= link_to "Sign up", new_user_registration_path, class: 'button button-primary' %>
+      <% end %>
+    </div>
+  </div>
+</header>

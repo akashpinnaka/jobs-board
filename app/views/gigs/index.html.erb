@@ -1,0 +1,93 @@
+<section id="banner">
+  <div id="banner-inner" class="center">
+    <h1>
+      We currently have <span class="highlight">251</span> job posts but <br>
+      only <span class="highlight">102</span> applicants
+    </h1>
+    <div id="search-box">
+      <%= form_tag search_gigs_path, method: :get do |f| %>
+        <%= text_field_tag :search, nil, placeholder: 'Ex: Software engineer' %>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<section id="gigs-list-wrapper">
+  <div id="gigs-list-wrapper-inner" class="skinny-wrapper cf">
+    <div id="filters" class="fl-left">
+      <h2>Filters</h2>
+      <%= form_tag search_gigs_path, method: :get do |f| %>
+        <div class="form_field">
+          <h3>Search</h3>
+          <%= text_field_tag :search, nil, placeholder: "Developer, accountant etc.." %>
+        </div>
+        <div class="form_field">
+          <h3>Job category</h3>
+          <%= select_tag :category, options_from_collection_for_select(Category.all, :name, :name) %>
+        </div>
+        <div class="form_field">
+          <h3>Location</h3>
+          <%= text_field_tag :location, nil, placeholder: "Hyderabad, India etc.." %>
+        </div>
+        <div id="submit-search-button">
+          <%= submit_tag 'search', class: 'button' %>
+        </div>
+      <% end %>
+      <div id="types" class="cf">
+        <div class="checkbox fl-left">
+          <input type="checkbox" value="freelance"> Freelance          
+        </div>
+        <div class="checkbox fl-left">
+          <input type="checkbox" value="freelance"> Contract
+        </div>
+        <div class="checkbox fl-left">
+          <input type="checkbox" value="freelance"> Full time
+        </div>
+        <div class="checkbox fl-left">
+          <input type="checkbox" value="freelance"> Part
+        </div>
+      </div>      
+    </div>
+    <div id="gigs-list" class="fl-left">
+      <div id="gigs-list-inner">
+        <div id="header-bar" class="cf">
+          <h2 class="fl-left">Featured Jobs</h2>
+          <div class="fl-right">
+            <%= paginate @gigs %>
+          </div>
+        </div>
+
+        <% @gigs.each do |gig| %>
+          <div class="gig">
+            <div class="job-title-and-date cf">
+              <div class="title fl-left">
+                <h3>
+                  <%= link_to gig.name, gig_path(gig) %>
+                  <span class="fulltime button-small">Full time</span>
+                </h3>
+              </div>
+              <div class="date fl-right">
+                <%= gig.created_at.strftime('%b %m, %Y') %>
+              </div>
+            </div>
+            <div class="company-and-location cf">
+              <div class="company fl-left">
+                Yahoo
+              </div>
+              <div class="location fl-right">
+                <%= gig.location %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+        <div id="pagination-wrapper" class="cf">
+          <div class="fl-right"">
+            <%= paginate @gigs %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
