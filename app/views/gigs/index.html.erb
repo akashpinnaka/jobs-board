@@ -1,8 +1,8 @@
 <section id="banner">
   <div id="banner-inner" class="center">
     <h1>
-      We currently have <span class="highlight">251</span> job posts but <br>
-      only <span class="highlight">102</span> applicants
+      We currently have <span class="highlight"><%= @gigs.total_count %></span> job posts but <br>
+      only <span class="highlight"><%= @applicants_count %></span> applicants
     </h1>
     <div id="search-box">
       <%= form_tag search_gigs_path, method: :get do |f| %>
@@ -19,15 +19,15 @@
       <%= form_tag search_gigs_path, method: :get do |f| %>
         <div class="form_field">
           <h3>Search</h3>
-          <%= text_field_tag :search, nil, placeholder: "Developer, accountant etc.." %>
+          <%= text_field_tag :search, value = params.present? ? params[:search] : nil, placeholder: "Developer, accountant etc.." %>
         </div>
         <div class="form_field">
           <h3>Job category</h3>
-          <%= select_tag :category, options_from_collection_for_select(Category.all, :name, :name) %>
+          <%= select_tag :category, options_from_collection_for_select(Category.all, :name, :name, params[:category]), {:include_blank => '--select one--'} %>
         </div>
         <div class="form_field">
           <h3>Location</h3>
-          <%= text_field_tag :location, nil, placeholder: "Hyderabad, India etc.." %>
+          <%= text_field_tag :location, value = params.present? ? params[:location] : nil, placeholder: "Hyderabad, India etc.." %>
         </div>
         <div id="submit-search-button">
           <%= submit_tag 'search', class: 'button' %>
@@ -50,10 +50,30 @@
     </div>
     <div id="gigs-list" class="fl-left">
       <div id="gigs-list-inner">
+
+        <% if params[:search].present? || params[:category].present? || params[:location].present? %>
+          <div class="center">
+            <h2><%= pluralize(@gigs.total_count, 'job') %> matched your search.</h2>
+          </div>
+        <% end %>
+
         <div id="header-bar" class="cf">
           <h2 class="fl-left">Featured Jobs</h2>
           <div class="fl-right">
             <%= paginate @gigs %>
+          </div>
+        </div>
+
+        <div id="sort-menu" class="cf">
+          <div id="sort-menu-inner" class="fl-right">
+            <button class="sort-button">Sort by</button>
+            <ul class="dropdown-menu">
+              <li><%= link_to 'Oldest', gigs_path(sort_by: 'oldest') %></li>
+              <li><%= link_to 'Newest', gigs_path(sort_by: 'newest') %></li>
+              <li><%= link_to 'Name', gigs_path(sort_by: 'name') %></li>
+              <li><%= link_to 'Low budget', gigs_path(sort_by: 'low budget') %></li>
+              <li><%= link_to 'High budget', gigs_path(sort_by: 'high budget') %></li>
+            </ul>
           </div>
         </div>
 
@@ -63,7 +83,7 @@
               <div class="title fl-left">
                 <h3>
                   <%= link_to gig.name, gig_path(gig) %>
-                  <span class="fulltime button-small">Full time</span>
+                  <span class="fulltime button-small"><%= number_to_currency(gig.budget, precision: 0) %></span>
                 </h3>
               </div>
               <div class="date fl-right">
@@ -72,11 +92,16 @@
             </div>
             <div class="company-and-location cf">
               <div class="company fl-left">
-                Yahoo
+                <%= truncate(gig.description, length: 40) %>
               </div>
               <div class="location fl-right">
                 <%= gig.location %>
               </div>
+            </div>
+            <div class="skills-list">
+              <% gig.skills.each do |skill| %>
+                <span><%= skill.name %></span>
+              <% end %>
             </div>
           </div>
         <% end %>

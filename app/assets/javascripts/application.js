@@ -14,3 +14,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+$(document).ready(function() {
+  $('button.sort-button').on('click', function() {
+    $('ul.dropdown-menu').slideToggle(100);
+  });
+});

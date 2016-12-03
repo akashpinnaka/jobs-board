@@ -9,27 +9,14 @@
 Category.where(name: 'Web Development').first_or_create(name: 'Web Development')
 Category.where(name: 'Design').first_or_create(name: 'Design')
 Category.where(name: 'Finance').first_or_create(name: 'Finance')
+Category.where(name: 'Finance').first_or_create(name: 'Marketing')
+Category.where(name: 'Finance').first_or_create(name: 'Content Producing')
+Category.where(name: 'Finance').first_or_create(name: 'Testing')
 
-location = [
-  "Hyderabad, India",
-  "Delhi, India",
-  "Newyork, NY",
-  "Kukatpally, hyderabad",
-  "Ramnagar colony, Addhanki"
-]
 
-User.where(email: 'bob@example.com').first_or_create(email: 'Bob Green', password: 'password')
 
-10.times do
-  User.create(email: Faker::Internet.email, password: 'password')
-end
 
-50.times do
-  sleep 0.2
-  Gig.create(name: Faker::Name.title,
-             description: Faker::Lorem.paragraph(2),
-             budget: rand(200..10000),
-             location: location.sample,
-             user_id: 1,
-             category_id: rand(1..3))
-end
+User.where(email: 'aakash.pinnaka.com').first_or_create(name: 'Akash Pinnaka', email: 'aakash.pinnaka@gmail.com', password: 'password')
+User.where(email: 'pavani.pinnaka@gmail.com').first_or_create(name: 'Pavani Pinnaka', email: 'pavani.pinnaka@gmail.com', password: 'password')
+User.where(email: 'pinnakasrinivas@gmail.com').first_or_create(name: 'Srinu Pinnaka', email: 'pinnakasrinivas@gmail.com', password: 'password')
+User.where(email: 'pinnakajyothi@gmail.com').first_or_create(name: 'Jyothi Pinnaka', email: 'pinnakajyothi@gmail.com', password: 'password')

@@ -9,6 +9,7 @@
     </div>
     <div class="navigation">
       <% if user_signed_in? %>
+        <%= link_to "My Jobs", mygigs_path, class: 'button button-custom' %>
         <%= link_to "Edit profile", edit_user_registration_path, class: 'button button-custom' %>
         <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: 'button button-primary' %>
       <% else %>

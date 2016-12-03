@@ -1,0 +1,9 @@
+<% if user_signed_in? %>
+  <div id="session-details">
+    <div id="session-details-inner" class="skinny-wrapper cf">
+      <div class="welcome-msg fl-right">
+        Welcome, <%= current_user.name %>
+      </div>
+    </div>
+  </div>
+<% end %>

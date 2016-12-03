@@ -70,6 +70,27 @@ section#gigs-list-wrapper
       width: 80%
       padding: 0 0 0 2em
       #gigs-list-inner
+        #sort-menu
+          #sort-menu-inner
+            button
+              padding: 0.5em 4em
+              width: 170px
+            ul
+              position: absolute
+              width: 170px
+              list-style: none
+              background-color: #f8f8f8
+              border: 1px solid #e1e1e1
+              display: none
+              li
+                a
+                  display: block
+                  color: #333 
+                  padding: 0.4em 0.7em
+                  border-bottom: 1px solid #e1e1e1
+                  &:hover
+                    background-color: $highlight-orange
+                    color: #ffffff
         h2
           color: #888888
           font-weight: 700
@@ -108,6 +129,7 @@ nav.pagination
   span.page
     a
   span.current
+    color: #555555
   span.next
   span.last
 
@@ -139,7 +161,7 @@ section#new-job-form
               font-size: 0.9em
             label
               color: #555555
-            input[type="text"], input[type="number"], textarea
+            input[type="text"], input[type="number"], textarea, select
               font-size: 1em
               color: #333333
               width: 100%
@@ -148,9 +170,11 @@ section#new-job-form
               border-radius: 3px
               &:focus
                 box-shadow: 0 0 2px $highlight-blue
-            textarea
+            textarea.multiple-rows
               resize: vertical
               height: 200px
+            select
+              background: transparent
       input[type="submit"]
         background-color: $highlight-blue
         color: #ffffff
@@ -160,3 +184,150 @@ section#new-job-form
 
 
 //----------------End of New template styles
+
+
+//----------------Show page styles
+
+#gig-page
+  #gig-page-inner
+    h1
+      color: #555555
+    .container
+      border-bottom: 1px solid #e1e1e1
+      padding: 2em 1em 3em 1em
+      #gig-details
+        padding-right: 2em
+        width: 50%
+        h1
+          color: darken(#56d478, 10%)
+        .details
+          color: #777777
+          margin-top: 1em
+          border-bottom: 1px solid #f3f3f3
+          padding-bottom: 1em
+          span
+            background-color: #56d478
+            color: #ffffff
+            padding: 0.3em 1em
+            border: 0
+            border-radius: 3px
+            font-size: 0.8em
+        #description
+          margin-top: 2em
+          border-bottom: 1px solid #f3f3f3
+          padding-bottom: 2em
+          h2
+            color: #555555
+          p
+            margin-top: 1em
+            color: #555555
+            line-height: 1.5em
+        #skills-required
+          margin-top: 2em
+          h2
+            color: #555555
+      #proposal
+        width: 50%
+        padding-left: 2em
+        h1
+        form
+          margin-top: 2em
+          .form_field
+            margin-bottom: 1em
+            label
+              display: inline-block
+              margin-bottom: 0.4em
+              color: #555555
+            input[type="number"], textarea
+              font-size: 1em
+              color: #555555
+              padding: 0.5em 1em
+              border: 1px solid #cccccc
+              border-radius: 2px
+            input[type="number"]
+              width: 100%
+            textarea
+              width: 100%
+              height: 200px
+              resize: vertical
+      .link-wrapper
+        h2
+          margin-top: 3em
+          color: #555555
+        a
+          display: inline-block
+          margin-top: 2em
+
+
+    #proposals-list
+      margin-top: 3em
+      background-color: #f7f7f7
+      padding: 3em
+      h1
+        font-size: 1.7em
+      #proposals-list-inner
+        margin-top: 2em
+        padding: 2em
+        .awarded-proposal
+          background-color: transparentize(#56d478, 0.8)
+          padding: 1em
+          margin-bottom: 5em
+          .name
+            h2
+              color: darken(#56d478, 10%)
+          .bid span
+            color: #555555
+        .proposal
+          border-bottom: 1px solid #e1e1e1
+          padding: 1em 0
+          .name
+            h2
+              color: $highlight-blue
+          .bid
+            span
+              color: #555555
+
+
+.skills-list
+  margin-top: 2em
+  span
+    background-color: transparentize(#56d478, 0.8)
+    color: #555555
+    padding: 0.3em 1em
+    display: inline-block
+    margin-bottom: 1em
+
+//----------------End of show page styles
+
+//----------------My gigs syles
+
+
+#my-gigs
+  padding: 3em 0
+  #my-gigs-inner
+    h1
+      color: #333333
+    table
+      margin-top: 5em
+      width: 100%
+      border-collapse: collapse
+      tr
+        color: #555555
+        border-bottom: 1px solid #e1e1e1
+        .red
+          color: #d45678
+        .green
+          color: #56d478
+        th, td
+          padding: 1em
+        td
+          a
+            color: $highlight-blue
+        th
+          text-align: left
+      tr:first-of-type
+        border-bottom: 3px solid #888888
+
+
+
+//----------------End of my gigs styles

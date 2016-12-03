@@ -1,5 +1,112 @@
 <section id="gig-page">
-  <div id="gig-page-inner">
+  <div id="gig-page-inner" class="skinny-wrapper">
+    <h1>Job Details</h1>
+    <div class="container cf">
+      <div id="gig-details" class="fl-left">
+        <h1><%= @gig.name %></h1>
+        <div class="details">
+          <%= @gig.created_at.strftime('%b %m, %Y') %> &nbsp;|&nbsp;
+          <%= @gig.location %> &nbsp;|&nbsp;
+          <%= @gig.category.name %>
+          <span><%= number_to_currency(@gig.budget, precision: 0) %></span>
+        </div>
+        <div id="description">
+          <h2>Description</h2>
+          <p><%= @gig.description %></p>
+        </div>
+        <div id="skills-required">
+          <h2>Skills required</h2>
+          <div class="skills-list">
+            <% @gig.skills.each do |skill| %>
+              <span><%= skill.name %></span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <% if @gig.open %>
+        <% if user_signed_in? %>
+          <% if user_done_bidding_on_gig && !user_is_gig_owner %>
+            <div id="proposal" class="fl-left center link-wrapper">
+              <h2>Your bid : &nbsp;&nbsp;&nbsp;<%= number_to_currency(@proposal.bid, precision: 0) %></h2>
+            </div>
+          <% elsif !user_done_bidding_on_gig && !user_is_gig_owner %>
+            <div id="proposal" class="fl-left">
+              <h1>Submit a proposal</h1>
+              <%= form_for [@gig, @gig.proposals.new] do |f| %>
+                <div class="form_field">
+                  <%= f.label :bid %><br>
+                  <%= f.number_field :bid %>
+                </div>
+                <div class="form_field">
+                  <%= f.label :description %><br>
+                  <%= f.text_area :description %>
+                </div>
+                <div class="form_action">
+                  <%= f.submit 'Submit proposal', data: {disable_with: 'Submitting proposal'}, class: 'button-large' %>
+                </div>
+              <% end %>
+            </div>
+          <% else %>
+            <div id="proposal" class="fl-left center link-wrapper">
+              <h2><%= pluralize(@gig.proposals.count, 'proposal') %> on this project</h2>
+            </div>
+          <% end %> 
+        <% else %>
+          <div id="proposal" class="fl-left center link-wrapper">
+            <h2>Sign in to bid on this project</h2>
+            <%= link_to 'Sign in', new_user_session_path, class: 'button-large button-primary' %>
+          </div>
+        <% end %>
+      <% else %>
+        <div id="proposal" class="link-wrapper center fl-left">
+          <h2>This job is closed</h2>
+        </div>
+      <% end %>
+
+    </div>
     
+
+    <div id="proposals-list"> 
+      <h1 class="center">Proposals</h1>
+      <% if @proposals.count > 0 %>
+        <div id="proposals-list-inner">
+          <% if !@gig.open %>
+            <div class="awarded-proposal">
+              <div class="proposal-details cf">
+                <div class="name fl-left">
+                  <h2><%= @awarded_proposal.user.name %></h2>
+                </div>
+                <div class="bid fl-right">
+                  <span><%= number_to_currency(@awarded_proposal.bid, precision: 0) %></span>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <% @proposals.each do |proposal| %>
+            <div class="proposal">
+              <div class="proposal-details cf">
+                <div class="name fl-left">
+                    <h2><%= '---' if proposal.user == current_user %><%= proposal.user.name %> <%= '---' if proposal.user == current_user %></h2>                  
+                </div>
+                <div class="bid fl-right">
+                  <span><%= number_to_currency(proposal.bid, precision: 0) %></span>
+                </div>
+              </div>
+              <% if @gig.awarded_proposal == nil && @gig.user == current_user %>
+                <div class="award-proposal">
+                  <%= form_for proposal.gig, method: :put do |f| %>
+                    <%= f.hidden_field :awarded_proposal, value: proposal.id %>
+                    <%= f.hidden_field :open, value: false %>
+                    <%= f.submit "Award Proposal", class: 'button-large' %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
   </div>
 </section>

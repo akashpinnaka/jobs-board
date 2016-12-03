@@ -5,17 +5,18 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <div id="body-inner">
       <%= render 'layouts/header' %>
       <%= render 'layouts/flash' %>
+      <%= render 'layouts/session_details' %>
       <div id="main-content-wrapper">
         <%= yield %>
       </div>
       <%= render 'layouts/footer' %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     </div>
   </body>
 </html>

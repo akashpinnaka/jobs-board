@@ -1,0 +1,41 @@
+<%= form_for @gig do |f| %>
+      <div class="fields-wrapper cf">
+        <div class="half-width fl-left">
+          <div class="form_field">
+            <%= f.label :name %><br>
+            <%= f.text_field :name, placeholder: 'Webdevelopment, etc..' %><br>
+            <span>(Name of the job)</span>
+          </div>
+          <div class="form_field">
+            <%= f.label :category_id %><br>
+            <%= f.select :category_id, options_from_collection_for_select(Category.all, :id, :name), {include_blank: '--select one--'} %>
+            <span>(Web development, finance, etc..)</span>
+          </div>
+          <div class="form_field">
+            <%= f.label :description %><br>
+            <%= f.text_area :description, placeholder: 'Write here', class: 'multiple-rows' %>
+            <span>(Write the description about the job, your website, etc..)</span>
+          </div>
+        </div>
+        <div class="half-width fl-left">
+          <div class="form_field">
+            <%= f.label :budget %><br>
+            <%= f.number_field :budget, placeholder: 'Budget in USD' %>
+            <span>(Ex: $1000)</span>
+          </div>
+          <div class="form_field">
+            <%= f.label :location %><br>
+            <%= f.text_field :location, placeholder: 'Job location' %>
+            <span>(Delhi, Newyork, etc..)</span>
+          </div>
+          <div class="form_field">
+            <%= f.label :skill_list, 'Skills' %><br>
+            <%= f.text_area :skill_list, rows: 1, placeholder: 'Tell us the skills required for this job', class: 'single-row' %>
+            <span>(Seperate each skill with a comma.)</span>
+          </div>
+        </div>
+      </div>
+      <div class="form_action">
+        <%= f.submit 'Post the Job', data: {disable_with: 'Posting your job' }, class: 'button-large' %>
+      </div>
+    <% end %>

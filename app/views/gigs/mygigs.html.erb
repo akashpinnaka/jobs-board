@@ -1,0 +1,31 @@
+<div id="my-gigs">
+  <div id="my-gigs-inner" class="skinny-wrapper">
+    <h1>Jobs posted by me</h1>
+    <table>
+      <tr>
+        <th>Status</th>
+        <th>Job</th>
+        <th>Category</th>
+        <th>Budget</th>
+        <th class="center">Proposals</th>
+        <th></th>
+      </tr>
+      <% @mygigs.each do |gig| %>
+        <tr>
+          <td>
+            <% if gig.open %>
+              <span class="green">Open</span>
+            <% else %>
+              <span class="red">Closed</span>
+            <% end %>  
+          </td>
+          <td><%= link_to gig.name, gig %></td>
+          <td><%= gig.category.name %></td>
+          <td><%= number_to_currency(gig.budget, precision: 0) %></td>
+          <td class="center"><%= gig.proposals.count %></td>
+          <td><%= link_to 'Edit', edit_gig_path(gig) %> | <%= link_to 'Delete', gig, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
